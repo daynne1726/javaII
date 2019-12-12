@@ -23,7 +23,8 @@ import java.util.logging.Logger;
 public class CrudFile {
 
     static List<String> allLines = null;
-    static String file = "Z:\\CrudFile\\src\\crudfile\\users.txt";
+//    static String file = "Z:\\CrudFile\\src\\crudfile\\users.txt";
+     static String file = ".\\src\\users.txt";
     File myFile = new File(file);
 
     public Boolean addUser(String firstname, String lastname, String email, String password, String passCon) throws IOException {
@@ -32,7 +33,7 @@ public class CrudFile {
         );
         getLine();
         int id = allLines.size();
-        writer.newLine();	//Add new line
+//        writer.newLine();	//Add new line
         writer.write(id + "," + firstname + "," + lastname + "," + email + "," + password + "," + passCon);
         writer.close();
 
@@ -41,7 +42,8 @@ public class CrudFile {
 
     public static void getLine() {
         try {
-            allLines = Files.readAllLines(Paths.get("Z:\\CrudFile\\src\\crudfile\\users.txt"));
+//            allLines = Files.readAllLines(Paths.get("Z:\\CrudFile\\src\\crudfile\\users.txt"));
+            allLines = Files.readAllLines(Paths.get(".\\src\\users.txt"));
         } catch (IOException ex) {
             Logger.getLogger(CrudFile.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -49,7 +51,7 @@ public class CrudFile {
 
     public Boolean checkAccount(String inputusername, String inputpassword) {
         getLine();
-        for (int i = 1; i < allLines.size(); i++) {
+        for (int i = 0; i < allLines.size(); i++) {
             if (inputusername.equals(allLines.get(i).split(",")[3]) && inputpassword.equals(allLines.get(i).split(",")[4])) {
                 return true;
             }
@@ -144,7 +146,7 @@ public class CrudFile {
         }
         for (int i = 0; i < temp.size(); ++i) {
             String[] line = temp.get(i).split(",");
-            String inp = String.format("%s,%s,%s,%s,%s,%s\n", line[0], line[1], line[2], line[3], line[4], line[5]);
+            String inp = String.format("%s,%s,%s,%s,%s\n", line[0], line[1], line[2], line[3], line[4]);
             try {
                 Files.write(Paths.get(file), inp.getBytes(), StandardOpenOption.APPEND);
             } catch (Exception ex) {
