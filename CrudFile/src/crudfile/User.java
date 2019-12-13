@@ -189,7 +189,7 @@ public class User extends javax.swing.JFrame {
             update.setLname(data[2]);
             update.setEmail(data[3]);
             update.setPass(data[4]);
-            update.setRepeatpass(data[5]);
+            update.setRepeatpass(data[4]);
             update.setVisible(true);
             parent.setVisible(false);
         });
